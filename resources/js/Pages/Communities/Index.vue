@@ -92,8 +92,25 @@ defineProps({
                                                                 community.id
                                                             )
                                                         "
-                                                        class="text-indigo-600 hover:text-indigo-900"
+                                                        class="text-indigo-600 hover:text-indigo-900 mr-3"
                                                         >Edit<span
+                                                            class="sr-only"
+                                                            >, Lindsay
+                                                            Walton</span
+                                                        ></Link
+                                                    >
+                                                    <Link
+                                                        :href="
+                                                            route(
+                                                                'communities.destroy',
+                                                                community.id
+                                                            )
+                                                        "
+                                                        class="text-red-600 hover:text-red-900"
+                                                        method="delete"
+                                                        as="button"
+                                                        type="button"
+                                                        >Delete<span
                                                             class="sr-only"
                                                             >, Lindsay
                                                             Walton</span
