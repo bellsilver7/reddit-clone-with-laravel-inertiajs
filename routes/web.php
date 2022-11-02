@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\CommunityController;
+use App\Http\Controllers\Frontend\SubredditController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -24,6 +25,8 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+Route::get('/r/{slug}', [SubredditController::class, 'show'])->name('subreddit.show');
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/dashboard', function () {
