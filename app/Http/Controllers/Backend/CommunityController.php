@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CommunityStoreRequest;
+use App\Http\Requests\StoreCommunityRequest;
 use App\Models\Community;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class CommunityController extends Controller
@@ -41,7 +40,7 @@ class CommunityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CommunityStoreRequest $request)
+    public function store(StoreCommunityRequest $request)
     {
         Community::create($request->validated() + ['user_id' => auth()->id()]);
 
@@ -78,7 +77,7 @@ class CommunityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CommunityStoreRequest $request, Community $community)
+    public function update(StoreCommunityRequest $request, Community $community)
     {
         $community->update($request->validated());
 
