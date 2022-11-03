@@ -6,14 +6,18 @@ import PrimaryButton from "@/Components/PrimaryButton.vue";
 import TextInput from "@/Components/TextInput.vue";
 import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 
+const props = defineProps({
+    community: Object,
+});
+
 const form = useForm({
-    name: "",
+    title: "",
+    url: "",
     description: "",
-    slug: "",
 });
 
 const submit = () => {
-    form.post(route("communities.store"));
+    form.post(route("communities.posts.store", props.community.slug));
 };
 </script>
 
@@ -21,7 +25,7 @@ const submit = () => {
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Create Community
+                Create Post for {{ community.name }}
             </h2>
         </template>
         <div class="py-12">
@@ -29,18 +33,34 @@ const submit = () => {
                 <div class="max-w-md mx-auto bg-white m-2 p-6">
                     <form @submit.prevent="submit">
                         <div>
-                            <InputLabel for="name" value="Name" />
+                            <InputLabel for="title" value="Title" />
                             <TextInput
-                                id="name"
+                                id="title"
                                 type="text"
                                 class="mt-1 block w-full"
-                                v-model="form.name"
+                                v-model="form.title"
                                 autofocus
-                                autocomplete="name"
+                                autocomplete="title"
                             />
                             <InputError
                                 class="mt-2"
-                                :message="form.errors.name"
+                                :message="form.errors.title"
+                            />
+                        </div>
+
+                        <div class="mt-4">
+                            <InputLabel for="url" value="Url" />
+                            <TextInput
+                                id="url"
+                                type="text"
+                                class="mt-1 block w-full"
+                                v-model="form.url"
+                                autofocus
+                                autocomplete="url"
+                            />
+                            <InputError
+                                class="mt-2"
+                                :message="form.errors.url"
                             />
                         </div>
 
