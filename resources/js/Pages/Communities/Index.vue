@@ -90,7 +90,7 @@ defineProps({
                                                         :href="
                                                             route(
                                                                 'communities.edit',
-                                                                community.id
+                                                                community.slug
                                                             )
                                                         "
                                                         class="text-indigo-600 hover:text-indigo-900 mr-3"
@@ -104,7 +104,7 @@ defineProps({
                                                         :href="
                                                             route(
                                                                 'communities.destroy',
-                                                                community.id
+                                                                community.slug
                                                             )
                                                         "
                                                         class="text-red-600 hover:text-red-900"
