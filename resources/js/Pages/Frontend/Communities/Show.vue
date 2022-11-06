@@ -14,7 +14,7 @@ defineProps({
         <template #header>
             <div class="flex justify-between m-2 p-2">
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                    r/{{ community.name }}
+                    r/{{ community.slug }}
                 </h2>
                 <Link
                     v-if="$page.props.auth.auth_check"
@@ -30,7 +30,7 @@ defineProps({
                     v-for="post in posts.data"
                     :key="post.id"
                     :post="post"
-                    :commnunity="community.name"
+                    :community="community.slug"
                 />
                 <div class="mt-4 p-2">
                     <Pagination :links="posts.meta.links" />
