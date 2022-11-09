@@ -1,11 +1,25 @@
 <script setup>
 import GuestLayout from "@/Layouts/GuestLayout.vue";
-import { Link } from "@inertiajs/inertia-vue3";
+import { Link, useForm } from "@inertiajs/inertia-vue3";
 
-defineProps({
+const props = defineProps({
     community: Object,
     post: Object,
 });
+
+const form = useForm({
+    content: "",
+});
+
+const submit = () => {
+    form.post(
+        route("frontend.posts.comments", [
+            props.community.slug,
+            props.post.data.slug,
+        ]),
+        { onSuccess: () => form.reset("content") }
+    );
+};
 </script>
 <template>
     <GuestLayout>
@@ -75,6 +89,50 @@ defineProps({
                             class="font-semibold text-blue-500 text-sm hover:text-blue-300"
                             >{{ post.data.url }}</a
                         >
+                    </div>
+                    <hr />
+                    <ul role="list" class="divide-y divide-gray-200 m-2 p-2">
+                        <li
+                            v-for="(comment, index) in post.data.comments"
+                            :key="index"
+                            class="py-4 flex flex-col"
+                        >
+                            <div class="text-sm">
+                                Commented by
+                                <span
+                                    class="font-semibold ml-1 text-slate-700"
+                                    >{{ comment.username }}</span
+                                >
+                            </div>
+                            <div class="text-slate-600 m-2 p-2">
+                                {{ comment.content }}
+                            </div>
+                        </li>
+                    </ul>
+                    <hr />
+                    <div v-if="$page.props.auth.auth_check">
+                        <form class="m-2 p-2 max-w-md" @submit.prevent="submit">
+                            <div class="mt-2">
+                                <label
+                                    for="comment"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400"
+                                    >Your comment</label
+                                >
+                                <textarea
+                                    v-model="form.content"
+                                    id="comment"
+                                    rows="4"
+                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border"
+                                ></textarea>
+                            </div>
+                            <div class="mt-2">
+                                <button
+                                    class="px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white rounded-md"
+                                >
+                                    Comment
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
