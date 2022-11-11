@@ -15,7 +15,9 @@ class CommunityController extends Controller
         $community = Community::where('slug', $slug)->firstOrFail();
 
         $posts = CommunityPostResource::collection(
-            $community->posts()->with('user')->paginate(3)
+            $community->posts()->with(['user', 'postVotes' => function ($query) {
+                $query->where('user_id', auth()->id());
+            }])->paginate(3)
         );
         return Inertia::render('Frontend/Communities/Show', compact('community', 'posts'));
     }
