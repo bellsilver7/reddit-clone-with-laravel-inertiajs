@@ -34,7 +34,7 @@ defineProps({
                 {{ post.description }}
             </p>
             <div class="m-2 flex p-2">
-                <p class="mr-4 p-2">Comments(2)</p>
+                <p class="mr-4 p-2">Comments({{ post.comments_count }})</p>
                 <Link
                     :href="
                         route('frontend.communities.posts.show', [

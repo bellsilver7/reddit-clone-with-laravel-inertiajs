@@ -17,7 +17,7 @@ class CommunityController extends Controller
         $posts = CommunityPostResource::collection(
             $community->posts()->with(['user', 'postVotes' => function ($query) {
                 $query->where('user_id', auth()->id());
-            }])->paginate(3)
+            }])->withCount('comments')->paginate(3)
         );
         return Inertia::render('Frontend/Communities/Show', compact('community', 'posts'));
     }
