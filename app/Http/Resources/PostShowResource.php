@@ -16,13 +16,15 @@ class PostShowResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'username' => $this->user->username,
-            'title' => $this->title,
-            'description' => $this->description,
-            'url' => $this->url,
             'slug' => $this->slug,
+            'title' => $this->title,
+            'url' => $this->url,
+            'description' => $this->description,
+            'username' => $this->user->username,
             'owner' => auth()->id() === $this->user_id,
             'comments' => CommentResource::collection($this->whenLoaded('comments')),
+            'votes' => $this->votes,
+            'postVotes' => $this->whenLoaded('postVotes'),
         ];
     }
 }

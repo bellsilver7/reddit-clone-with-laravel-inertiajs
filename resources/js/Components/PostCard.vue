@@ -1,6 +1,7 @@
 <script setup>
 import { Link } from "@inertiajs/inertia-vue3";
-import PostVote from "./PostVote.vue";
+// import PostVote from "./PostVote.vue";
+import PostVote from "@/Components/PostVote.vue";
 
 defineProps({
     post: Object,
@@ -9,9 +10,9 @@ defineProps({
 </script>
 <template>
     <div
-        class="mt-4 flex max-w-4xl rounded-lg border border-gray-200 bg-white p-6 shadow-md dark:border-gray-700 dark:bg-gray-800"
+        class="mt-4 flex max-w-4xl rounded-lg border border-gray-200 bg-white shadow-md dark:border-gray-700 dark:bg-gray-800"
     >
-        <div class="mr3">
+        <div class="mr-3">
             <PostVote :post="post" />
         </div>
         <div>
