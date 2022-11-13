@@ -20,10 +20,9 @@ defineProps({
                 />
             </div>
             <div class="w-4/12 p-4">
-                <div class="m-2 p-2 bg-slate-500 text-white">
-                    <h2>Top Communities</h2>
-                    <CommunityList :communities="communities.data" />
-                </div>
+                <CommunityList :communities="communities.data">
+                    <template #title>Top Communities</template>
+                </CommunityList>
             </div>
         </section>
     </GuestLayout>

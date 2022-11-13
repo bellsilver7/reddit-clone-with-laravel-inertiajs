@@ -7,7 +7,9 @@ defineProps({
 });
 </script>
 <template>
-    <div class="flex flex-col h-full w-12 p-2 bg-gray-200 text-center">
+    <div
+        class="flex flex-col h-full w-12 p-2 bg-gray-200 text-center rounded-lg"
+    >
         <UpVoteLink
             :slug="post.slug"
             :class="{

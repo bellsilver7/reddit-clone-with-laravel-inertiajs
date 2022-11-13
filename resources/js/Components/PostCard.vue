@@ -17,15 +17,26 @@ defineProps({
         </div>
         <div>
             <div class="m-2 flex p-2">
-                <span class="mr-3 font-semibold">r/{{ community }}</span>
+                <Link
+                    :href="route('frontend.communities.show', community)"
+                    class="mr-3 font-semibold hover:text-indigo-700"
+                    >r/{{ community }}</Link
+                >
                 <div class="flex">
                     Posted by
                     <span class="ml-1 font-semibold">{{ post.username }}</span>
                 </div>
             </div>
-            <Link href="#">
+            <Link
+                :href="
+                    route('frontend.communities.posts.show', [
+                        community,
+                        post.slug,
+                    ])
+                "
+            >
                 <h5
-                    class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+                    class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white hover:text-indigo-700"
                 >
                     {{ post.title }}
                 </h5>
