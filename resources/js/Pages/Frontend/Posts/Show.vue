@@ -8,6 +8,8 @@ const props = defineProps({
     community: Object,
     post: Object,
     posts: Object,
+    can_update: Boolean,
+    can_delete: Boolean,
 });
 
 const form = useForm({
@@ -58,13 +60,9 @@ const submit = () => {
                                     post.data.username
                                 }}</span>
                             </div>
-                            <div
-                                v-if="
-                                    $page.props.auth.auth_check &&
-                                    post.data.owner
-                                "
-                            >
+                            <div v-if="$page.props.auth.auth_check">
                                 <Link
+                                    v-if="can_update"
                                     :href="
                                         route('communities.posts.edit', [
                                             community.slug,
@@ -75,6 +73,7 @@ const submit = () => {
                                     >Edit</Link
                                 >
                                 <Link
+                                    v-if="can_delete"
                                     :href="
                                         route('communities.posts.destroy', [
                                             community.slug,
