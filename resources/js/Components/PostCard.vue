@@ -24,7 +24,8 @@ defineProps({
                 >
                 <div class="flex">
                     Posted by
-                    <span class="ml-1 font-semibold">{{ post.username }}</span>
+                    <span class="font-semibold mx-1">{{ post.username }}</span>
+                    {{ post.created_at }}
                 </div>
             </div>
             <Link
